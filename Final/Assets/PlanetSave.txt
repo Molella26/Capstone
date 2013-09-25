@@ -1,0 +1,6 @@
+PlanetsUnlocked=10000
+PlanetOne=--
+PlanetTwo=--
+PlanetThree=--
+PlanetFour=--
+PlanetFive=--

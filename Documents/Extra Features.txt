@@ -1,0 +1,7 @@
+Insurance
+	- Players can buy insurance, there will be a 
+		one time fee, along with mini fees from
+		each level comepeltion.
+	- Each insurance will give benfites to the player
+		Can give players free health care, discounts on stats, more exp, etc
+

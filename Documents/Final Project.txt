@@ -1,0 +1,50 @@
+Final Project
+
+Ship fighting game
+
+Each ship has 3 elements
+- Health (hp)
+- Weapon Power
+- Defence
+
+4 Ships With All Different element stats
+
++ = strong element
+~ = normal element
+- = weak element
+
+Name: The Velcirox
+Colour: Switch Able
+~Health: 50/100
+~Weapon Power: 50/100
+~Defence: 50/100
+Special: Enemies don't move
+
+Name: The SlyHawk
+Colour: Switch Able
++Health: 70/100
+~Weapon Power: 50/100
+-Defence: 30/100
+Special: Gain Health Per Kill
+
+Name: The TomFalcon - B26
+Colour: Switch Able
+-Health: 30/100
++Weapon Power: 70/100
+~Defence: 50/100
+Special: Infinite shooting for 10 sec
+
+Name: The Clunker - X19
+Colour: Switch Able
+~Health: 50/100
+-Weapon Power: 30/100
++Defence: 70/100
+Special: No damage for 10 sec
+
+After earning ex points you unlock upgrades for your ship to make it more stronger.
+You can upgrade it enough to have full stats, but it will always be stronger in that one element.
+
+Level Up: effects hidden stats
+Strong element +30
+Weak Element +10
+Normal Element +20
