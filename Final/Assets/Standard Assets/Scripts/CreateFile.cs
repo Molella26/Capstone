@@ -91,7 +91,7 @@ public class CreateFile {
 
     public void NewSaveFile()
     {
-        string write = "SelectedShip=0@SelectedCannon=0@UnlockedCannons=100@PlayerLevel=1@PlayerExp=0";
+        string write = "SelectedShip=0@SelectedCannon=0@UnlockedCannons=100@PlayerLevel=1@PlayerExp=0@Money=0";
         write = write.Replace("@", System.Environment.NewLine);
         File.WriteAllText(Path, write);
     }
@@ -141,7 +141,7 @@ public class CreateFile {
         string[] Slipter = Read.Split('\n');
         Slipter[1] = "SelectedCannon=" + CurrentCannon;
         string Final = "";
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             Final += Slipter[i] + System.Environment.NewLine;
         }
@@ -174,10 +174,150 @@ public class CreateFile {
             Num++;
         }
         string Final = "";
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             Final += Slipter[i] + System.Environment.NewLine;
         }
+        File.WriteAllText(Path, Final);
+    }
+
+    public string ReadPlayersLevel(string FileName)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        string[] Answer = Slipter[3].Split('=');
+        return Answer[1];
+    }
+
+    public void SavePlayersLevel(string FileName, int value)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        Slipter[3] = "PlayerLevel=" + value;
+        string Final = "";
+        for (int i = 0; i < 6; i++)
+        {
+            Final += Slipter[i] + System.Environment.NewLine;
+        }
+        File.WriteAllText(Path, Final);
+    }
+
+    public string ReadPlayersExp(string FileName)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        string[] Answer = Slipter[4].Split('=');
+        return Answer[1];
+    }
+
+    public void SavePlayersExp(string FileName, int value)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        Slipter[4] = "PlayerExp=" + value;
+        string Final = "";
+        for (int i = 0; i < 6; i++)
+        {
+            Final += Slipter[i] + System.Environment.NewLine;
+        }
+        File.WriteAllText(Path, Final);
+    }
+
+
+    public string ReadMoney(string FileName)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        string[] Answer = Slipter[5].Split('=');
+        return Answer[1];
+    }
+
+    public void SaveMoney(string FileName, int value)
+    {
+        if (!CheckFile(FileName)) NewSaveFile();
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        Slipter[5] = "Money=" + value;
+        string Final = "";
+        for (int i = 0; i < 6; i++)
+        {
+            Final += Slipter[i] + System.Environment.NewLine;
+        }
+        File.WriteAllText(Path, Final);
+    }
+
+
+    //ShipSave
+    public void NewShipFile()
+    {
+        string write = "The Velcirox/50/50/50@The SlyHawk/70/50/30@The TomFalcon - B26/30/70/50@The Clunker - X19/50/30/70@";
+        write = write.Replace("@", System.Environment.NewLine);
+        File.WriteAllText(Path, write);
+    }
+
+    public string ReadName(string fileName, int curShip)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        return ReadStat(0, curShip);
+    }
+    public string ReadAttack(string fileName, int curShip)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        return ReadStat(1, curShip);
+    }
+    public void SaveAttack(string fileName, int curShip, int value)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        SaveStat(1, curShip, value);
+    }
+    public string ReadDefence(string fileName, int curShip)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        return ReadStat(2, curShip);
+    }
+    public void SaveDefence(string fileName, int curShip, int value)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        SaveStat(2, curShip, value);
+    }
+    public string ReadHP(string fileName, int curShip)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        return ReadStat(3, curShip);
+    }
+    public void SaveHP(string fileName, int curShip, int value)
+    {
+        if (!CheckFile(fileName)) NewShipFile();
+        SaveStat(3, curShip, value);
+    }
+
+    string ReadStat(int location, int Curship)
+    {
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        string[] Slipter2 = Slipter[Curship].Split('/');
+        return Slipter2[location];
+    }
+
+    void SaveStat(int location, int Curship, int value)
+    {
+        string Read = File.ReadAllText(Path);
+        string[] Slipter = Read.Split('\n');
+        string[] Slipter2 = Slipter[Curship].Split('/');
+        Slipter2[location] = value.ToString();
+
+        string Final = "";
+        Slipter[Curship] = Slipter2[0] + "/" + Slipter2[1] + "/" + Slipter2[2] + "/" + Slipter2[3] + System.Environment.NewLine;
+        for (int i = 0; i < 4; i++)
+        {
+            Final += Slipter[i] + System.Environment.NewLine;
+        }
+
         File.WriteAllText(Path, Final);
     }
 

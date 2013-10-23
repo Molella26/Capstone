@@ -17,7 +17,6 @@ public class PlayerControls : MonoBehaviour {
         float x, y, z;
         x = Ship.transform.parent.position.x; y = Ship.transform.parent.position.y; z = Ship.transform.parent.position.z;
         Ship.transform.Translate(new Vector3(x, y, z));
-	    
 	}
 	
 	// Update is called once per frame
