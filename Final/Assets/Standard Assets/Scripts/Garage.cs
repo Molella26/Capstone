@@ -10,14 +10,16 @@ public class Garage : MonoBehaviour {
     bool FirstRun = true;
     int CurText = 0;
     int CurMenu = 0;
-    int MaxText = 3;
+    int MaxText = 4;
     string Choice = "";
+    int lastShip;
     CreateFile CF = new CreateFile();
     KeyCheck Key = new KeyCheck();
 	// Use this for initialization
 	void Start () {
         GT = new GameObject[10];
         DS.Start(Ships);
+        lastShip = 0;
 	}
 
     void Begining()
@@ -27,9 +29,9 @@ public class Garage : MonoBehaviour {
             GT[0] = TC.CreateNewText(GT[0], "Change Cannons", new Vector3(0.22f, 0.82f, 0.0f), Color.yellow, 30);
             GT[1] = TC.CreateNewText(GT[1], "Stats", new Vector3(0.22f, 0.7f, 0.0f), Color.gray, 30);
             GT[2] = TC.CreateNewText(GT[1], "Skill Tree", new Vector3(0.22f, 0.58f, 0.0f), Color.gray, 30);
+            GT[3] = TC.CreateNewText(GT[1], "Change Ship", new Vector3(0.22f, 0.46f, 0.0f), Color.black, 30);            
             FirstRun = false;
         }
-
 
     }
 
@@ -47,6 +49,29 @@ public class Garage : MonoBehaviour {
             GT[3] = TC.CreateNewText(GT[1], "Back", new Vector3(0.08f, 0.40f, 0.0f), Color.black, 30);
             FirstRun = false;
         }
+    }
+
+    void ShipChange()
+    {
+        if (FirstRun)
+        {
+            ///first one is auto yellow!
+            GT[0] = TC.CreateNewText(GT[0], "The Velcirox", new Vector3(0.22f, 0.82f, 0.0f), Color.black, 30);
+            GT[1] = TC.CreateNewText(GT[1], "The SlyHawk", new Vector3(0.22f, 0.7f, 0.0f), Color.black, 30);
+            GT[2] = TC.CreateNewText(GT[1], "The TomFalcon", new Vector3(0.22f, 0.58f, 0.0f), Color.black, 30);
+            GT[3] = TC.CreateNewText(GT[1], "The Clunker", new Vector3(0.22f, 0.46f, 0.0f), Color.black, 30);
+            GT[4] = TC.CreateNewText(GT[1], "Back", new Vector3(0.08f, 0.40f, 0.0f), Color.black, 30);
+            CurText = lastShip;
+            GT[CurText].guiText.material.color = Color.yellow;
+            FirstRun = false; 
+            
+        }
+        if (int.Parse(CF.ReadCurrentShip("SaveFile")) != CurText)
+        {
+            GT[int.Parse(CF.ReadCurrentShip("SaveFile"))].guiText.material.color = Color.red;
+        }
+       
+        
     }
 
     void ApplyCannon()
@@ -75,6 +100,7 @@ public class Garage : MonoBehaviour {
         KeyPressing();
         if(CurMenu == 0) Begining();
         if (CurMenu == 1) CannonChange();
+        if (CurMenu == 4) ShipChange();
         
 	}
 
@@ -106,14 +132,34 @@ public class Garage : MonoBehaviour {
 
 
             }
+            if (CurText == 3)
+            {
+                //Change Ship
+                CurMenu = 4;
+                MaxText = 5;
+                lastShip = 0;
+            }
         }
-
+        else if (CurMenu == 4)
+        {
+            if (CurText == 4)
+            {
+                Destroy(GameObject.Find("Ship"));
+                CurMenu = 0;
+                MaxText = 4;
+                DS.Start(Ships);
+            }
+            else
+            {
+                lastShip = CurText;
+                CF.SaveCurrentShip("SaveFile", CurText);
+            }
+        }
         else if (CurMenu == 1)
         {
             CurMenu = 0;
-            MaxText = 3;
+            MaxText = 4;
         }
-        
         CurText = 0;
         FirstRun = true;
         return CurMenu;
@@ -149,10 +195,19 @@ public class Garage : MonoBehaviour {
 
         if (Key.getKeyUp(KeyCode.KeypadEnter))
         {
-            if(CurMenu == 0)
-                ConvertChoice();
-            else if (CurMenu == 1)
+            if (CurMenu == 1)
+            {
                 ApplyCannon();
+            }
+            else { 
+                ConvertChoice();
+            }
+        }
+
+        if(CurMenu == 4 && CurText != 4)
+        {
+             Destroy(GameObject.Find("Ship"));
+                DS.ChangeShip(CurText);
         }
 
     }

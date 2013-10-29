@@ -27,7 +27,13 @@ public class DisplayShip {
         
 	}
 
-    
+    public void ChangeShip(int num)
+    {
+        Ship = MonoBehaviour.Instantiate(Models[num], new Vector3(12.77636f, 8f, 1.6882f), new Quaternion(0, 0, 0, 1)) as GameObject;
+        Ship.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        Ship.name = "Ship";
+        MonoBehaviour.Destroy(Ship.transform.Find("Flame").gameObject);
+    }
 
     void RotateShip(){
         

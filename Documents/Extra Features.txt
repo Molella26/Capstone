@@ -1,5 +1,18 @@
 All Extra Features
 
+Upgradeable weapons
+	- All bosses fight with different attacks, when you defeat
+		a boss they will release a Tech piece
+	- Tech pieces will be used in oder to change the type
+		of firing system your cannons use
+	- not sure if want it to be
+		- Set weapon before battle and Can't switch
+		- Set weapon during battle, switchable
+
+
+Upgradeable Parts
+	- HP/Attack/Defence it upgraded by buying class parts
+		this will improve the skill by a certain number
 
 Insurance
 	- Players can buy insurance, there will be a 

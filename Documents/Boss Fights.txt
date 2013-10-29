@@ -1,0 +1,50 @@
+Vs Spider
+
+Starting from the front of the model, first set of legs will be long
+the size will shrink more and more for the further legs.
+
+How to defeat:
+	They player must defeat all 8 legs in order to attack the head
+	of the spider
+
+Enemy Attack:
+	- The enemy uses lazors, it shoots them out of its legs
+	- The more legs the player has destroied the more lazors it 
+		fire. it will start by shooting one lazor
+
+
+
+Vs Scorpion
+
+The scorpion will have two claws swinging back and forth
+
+How to defeat:
+	- They player must defeat both claws, and tail
+	- The claws will have 2 lives, meaning you have to destory
+		them twice, tail has 1 life
+	- The scorpion will have a Defense mode, where he shoots out
+		cannons from his mouth, in attack mode he uses
+		his claws to attack. You can't hurt ship in defense mode
+
+Enemy Attack:
+	- The scorpion will have a charge shoot, one claw will start
+		to charge up, a light or sound will be set
+		off before an attack is released
+	- The tail will also do a charge shoot but will charge the shot
+		and release it way faster than the claws do
+
+
+Vs Caterpillar
+
+Caterpillar full of body parts, moving around the screen
+
+How to Defeat:
+	- the player must destroy all humps/ body parts
+
+Enemy Attack
+	- the ship will leave the scene and re-enter, it will shoot mulit
+		fire, at times the ship will just re-enter and fly
+		arross the scene
+	- as you defeat more humps/body parts the more faster it will
+		move and the more fast the shots will travel
+	
