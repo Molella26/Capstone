@@ -48,6 +48,8 @@
      <Compile Include="Assets\Standard Assets\Scripts\AttachCannon.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\CreateFile.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\DisplayShip.cs" />
+     <Compile Include="Assets\Standard Assets\Scripts\EnemyMovement.cs" />
+     <Compile Include="Assets\Standard Assets\Scripts\EnemyShip.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Garage.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\KeyCheck.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Planet.cs" />

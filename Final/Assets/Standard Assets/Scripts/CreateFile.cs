@@ -255,7 +255,7 @@ public class CreateFile {
     //ShipSave
     public void NewShipFile()
     {
-        string write = "The Velcirox/50/50/50@The SlyHawk/70/50/30@The TomFalcon - B26/30/70/50@The Clunker - X19/50/30/70@";
+        string write = "The Velcirox/50/50/50@The SlyHawk/70/50/30@The TomFalcon/30/70/50@The Clunker/50/30/70@";
         write = write.Replace("@", System.Environment.NewLine);
         File.WriteAllText(Path, write);
     }

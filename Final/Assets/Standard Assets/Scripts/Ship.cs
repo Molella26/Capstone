@@ -6,7 +6,6 @@ public class Ship {
     CreateFile SF;
     public GameObject[] Models;
     GameObject ship;
-    ApplicationModel AM = new ApplicationModel();
     GameObject StartPoision;
 
     int Attack, HP, Defence;
@@ -45,7 +44,7 @@ public class Ship {
         Models = models;
     }
     // Use this for initialization
-    public void Start()
+    public virtual void Start()
     {
         StartPoision = GameObject.Find("GameObject");
         SF = new CreateFile();
@@ -58,7 +57,7 @@ public class Ship {
     }
 
     //Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
         
 

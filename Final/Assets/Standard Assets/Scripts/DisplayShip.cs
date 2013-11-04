@@ -41,9 +41,13 @@ public class DisplayShip {
         {
             Ship.transform.Rotate(new Vector3(0, 2.5f, 0));
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             Ship.transform.Rotate(new Vector3(0, -2.5f, 0));
+        }
+        else
+        {
+            Ship.transform.Rotate(new Vector3(0, 0.2f, 0));
         }
     }
 }

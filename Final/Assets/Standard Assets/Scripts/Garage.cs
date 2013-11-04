@@ -11,30 +11,34 @@ public class Garage : MonoBehaviour {
     int CurText = 0;
     int CurMenu = 0;
     int MaxText = 4;
-    string Choice = "";
     int lastShip;
-    CreateFile CF = new CreateFile();
-    KeyCheck Key = new KeyCheck();
+    CreateFile CF;
+    KeyCheck Key;
 	// Use this for initialization
 	void Start () {
-        GT = new GameObject[10];
+       CF = new CreateFile();
+       Key = new KeyCheck();
+        GT = new GameObject[20];
         DS.Start(Ships);
-        lastShip = 0;
-	}
+        lastShip = int.Parse(CF.ReadCurrentShip("SaveFile"));
+    }
+
 
     void Begining()
     {
         if (FirstRun)
         {
             GT[0] = TC.CreateNewText(GT[0], "Change Cannons", new Vector3(0.22f, 0.82f, 0.0f), Color.yellow, 30);
-            GT[1] = TC.CreateNewText(GT[1], "Stats", new Vector3(0.22f, 0.7f, 0.0f), Color.gray, 30);
+            GT[1] = TC.CreateNewText(GT[1], "Parts Shop", new Vector3(0.22f, 0.7f, 0.0f), Color.gray, 30);
             GT[2] = TC.CreateNewText(GT[1], "Skill Tree", new Vector3(0.22f, 0.58f, 0.0f), Color.gray, 30);
-            GT[3] = TC.CreateNewText(GT[1], "Change Ship", new Vector3(0.22f, 0.46f, 0.0f), Color.black, 30);            
+            GT[3] = TC.CreateNewText(GT[1], "Change Ship", new Vector3(0.22f, 0.46f, 0.0f), Color.black, 30);
+            
             FirstRun = false;
         }
 
     }
 
+    
     void CannonChange()
     {
         if (FirstRun)
@@ -55,22 +59,28 @@ public class Garage : MonoBehaviour {
     {
         if (FirstRun)
         {
-            ///first one is auto yellow!
+         
             GT[0] = TC.CreateNewText(GT[0], "The Velcirox", new Vector3(0.22f, 0.82f, 0.0f), Color.black, 30);
             GT[1] = TC.CreateNewText(GT[1], "The SlyHawk", new Vector3(0.22f, 0.7f, 0.0f), Color.black, 30);
             GT[2] = TC.CreateNewText(GT[1], "The TomFalcon", new Vector3(0.22f, 0.58f, 0.0f), Color.black, 30);
             GT[3] = TC.CreateNewText(GT[1], "The Clunker", new Vector3(0.22f, 0.46f, 0.0f), Color.black, 30);
-            GT[4] = TC.CreateNewText(GT[1], "Back", new Vector3(0.08f, 0.40f, 0.0f), Color.black, 30);
             CurText = lastShip;
             GT[CurText].guiText.material.color = Color.yellow;
-            FirstRun = false; 
-            
+            GT[4] = TC.CreateNewText(GT[4], CF.ReadName("ShipSave", CurText), new Vector3(0.55f, 0.30f, 0.0f), Color.black, 30);
+            GT[5] = TC.CreateNewText(GT[5], "HP: ", new Vector3(0.55f, 0.23f, 0.0f), Color.black, 30);
+            GT[6] = TC.CreateNewText(GT[6], "Attack: ", new Vector3(0.56f, 0.16f, 0.0f), Color.black, 30);
+            GT[7] = TC.CreateNewText(GT[7], "Defense: ", new Vector3(0.57f, 0.09f, 0.0f), Color.black, 30);
+            GT[8] = TC.CreateNewText(GT[8], CF.ReadHP("ShipSave", CurText), new Vector3(0.65f, 0.23f, 0.0f), Color.black, 30);
+            GT[9] = TC.CreateNewText(GT[8], CF.ReadAttack("ShipSave", CurText), new Vector3(0.65f, 0.16f, 0.0f), Color.black, 30);
+            GT[10] = TC.CreateNewText(GT[8], CF.ReadDefence("ShipSave", CurText), new Vector3(0.65f, 0.09f, 0.0f), Color.black, 30);
+
+            FirstRun = false;
         }
         if (int.Parse(CF.ReadCurrentShip("SaveFile")) != CurText)
         {
             GT[int.Parse(CF.ReadCurrentShip("SaveFile"))].guiText.material.color = Color.red;
         }
-       
+
         
     }
 
@@ -92,21 +102,21 @@ public class Garage : MonoBehaviour {
         }
 
     }
-	
+
 	// Update is called once per frame
     void Update()
     {
+
         DS.Update();
         KeyPressing();
         if(CurMenu == 0) Begining();
         if (CurMenu == 1) CannonChange();
         if (CurMenu == 4) ShipChange();
-        
 	}
 
     int ConvertChoice()
     {
-
+        if (CurMenu == 4) MaxText = 11;
         for (int i = 0; i < MaxText; i++)
         {
             Destroy(GT[i]);
@@ -124,36 +134,29 @@ public class Garage : MonoBehaviour {
             }
             if (CurText == 1)
             {
-
+                //Parts Shop
 
             }
             if (CurText == 2)
             {
-
+                //Skill Tree
 
             }
             if (CurText == 3)
             {
                 //Change Ship
                 CurMenu = 4;
-                MaxText = 5;
-                lastShip = 0;
+                MaxText = 4;
             }
         }
         else if (CurMenu == 4)
         {
-            if (CurText == 4)
-            {
-                Destroy(GameObject.Find("Ship"));
-                CurMenu = 0;
-                MaxText = 4;
-                DS.Start(Ships);
-            }
-            else
-            {
-                lastShip = CurText;
-                CF.SaveCurrentShip("SaveFile", CurText);
-            }
+
+            lastShip = CurText;
+            CurMenu = 0;
+            MaxText = 4;
+            CF.SaveCurrentShip("SaveFile", CurText);
+            
         }
         else if (CurMenu == 1)
         {
@@ -204,10 +207,14 @@ public class Garage : MonoBehaviour {
             }
         }
 
-        if(CurMenu == 4 && CurText != 4)
+        if(CurMenu == 4 && (Key.getKeyUp(KeyCode.UpArrow) || Key.getKeyUp(KeyCode.DownArrow)))
         {
              Destroy(GameObject.Find("Ship"));
-                DS.ChangeShip(CurText);
+             DS.ChangeShip(CurText);
+             GT[4].guiText.text = CF.ReadName("ShipSave", CurText);
+             GT[8].guiText.text = CF.ReadHP("ShipSave", CurText);
+             GT[9].guiText.text = CF.ReadAttack("ShipSave", CurText);
+             GT[10].guiText.text = CF.ReadDefence("ShipSave", CurText);
         }
 
     }

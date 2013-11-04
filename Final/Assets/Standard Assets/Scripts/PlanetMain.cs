@@ -12,12 +12,10 @@ public class PlanetMain : MonoBehaviour {
     GameObject[] NewPlanets;
     ApplicationModel AM = new ApplicationModel();
     CreateFile CF;
-    CreateFile SF;
 
 	// Use this for initialization
 	void Start () {
         CF = new CreateFile();
-        SF = new CreateFile();
         AM.setCurLevel("PlanetMain");
         SS = new SolarSystem(Size);
         NewPlanets = new GameObject[Size];
@@ -120,7 +118,7 @@ public class PlanetMain : MonoBehaviour {
             {
                 AM.setCurPlanet(CurPlanet);
                 AM.setSS(SS);
-                Application.LoadLevel(1);
+                Application.LoadLevel(2);
             }
 
         }

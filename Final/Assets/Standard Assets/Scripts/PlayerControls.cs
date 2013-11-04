@@ -6,8 +6,6 @@ public class PlayerControls : MonoBehaviour {
     GameObject Ship;
     CreateFile SF;
     public GameObject[] Models;
-    KeyCheck Key = new KeyCheck();
-    bool Turn = false;
 	// Use this for initialization
 	void Start () {
         SF = new CreateFile();
