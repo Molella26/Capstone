@@ -5,21 +5,29 @@ public class KeyCheck{
 
     public bool getKeyUp(KeyCode Key)
     {
-        bool keyy = false;
         if (Input.GetKeyUp(Key))
         {
-            keyy = true;
+            return true;
         }
-        return keyy;
+        return false;
     }
 
     public bool getKeyDown(KeyCode Key)
     {
-        bool keyy = false;
         if (Input.GetKeyDown(Key))
         {
-            keyy = true;
+            return true;
         }
-        return keyy;
+        return false;
+    }
+
+    public bool getKey(KeyCode Key)
+    {
+
+        if (Input.GetKey(Key))
+        {
+            return true;
+        }
+        return false;
     }
 }

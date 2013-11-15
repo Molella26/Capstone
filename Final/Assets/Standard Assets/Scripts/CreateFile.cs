@@ -265,32 +265,32 @@ public class CreateFile {
         if (!CheckFile(fileName)) NewShipFile();
         return ReadStat(0, curShip);
     }
-    public string ReadAttack(string fileName, int curShip)
+    public string ReadHP(string fileName, int curShip)
     {
         if (!CheckFile(fileName)) NewShipFile();
         return ReadStat(1, curShip);
     }
-    public void SaveAttack(string fileName, int curShip, int value)
+    public void SaveHP(string fileName, int curShip, int value)
     {
         if (!CheckFile(fileName)) NewShipFile();
         SaveStat(1, curShip, value);
     }
-    public string ReadDefence(string fileName, int curShip)
+    public string ReadAttack(string fileName, int curShip)
     {
         if (!CheckFile(fileName)) NewShipFile();
         return ReadStat(2, curShip);
     }
-    public void SaveDefence(string fileName, int curShip, int value)
+    public void SaveAttack(string fileName, int curShip, int value)
     {
         if (!CheckFile(fileName)) NewShipFile();
         SaveStat(2, curShip, value);
     }
-    public string ReadHP(string fileName, int curShip)
+    public string ReadDefence(string fileName, int curShip)
     {
         if (!CheckFile(fileName)) NewShipFile();
         return ReadStat(3, curShip);
     }
-    public void SaveHP(string fileName, int curShip, int value)
+    public void SaveDefence(string fileName, int curShip, int value)
     {
         if (!CheckFile(fileName)) NewShipFile();
         SaveStat(3, curShip, value);

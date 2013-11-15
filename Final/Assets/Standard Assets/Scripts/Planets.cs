@@ -46,8 +46,10 @@ public class Planets : MonoBehaviour {
             transform.Rotate(new Vector3(0, 1, 0), 0.2f);
         }else if(AM.getCurLevel() == "RunningLevel")
         {
-            transform.localScale = new Vector3(100, 100, 100);
-            transform.Rotate(new Vector3(0, 1, 0), -0.05f); 
+            if(!AM.getPause()){
+                transform.localScale = new Vector3(100, 100, 100);
+                transform.Rotate(new Vector3(0, 1, 0), -0.05f); 
+            }
         }
 	}
 }

@@ -3,9 +3,21 @@ using System.Collections;
 
 public class ApplicationModel {
 
+    static public bool Firing = false;
     static public int CurPlanet = 0;
     static public string CurLevel;
     static SolarSystem SS;
+    static public bool Pause = false;
+
+    public void setPause(bool pause)
+    {
+        Pause = pause;
+    }
+
+    public bool getPause()
+    {
+        return Pause;
+    }
 
     public void setCurPlanet(int num)
     {
@@ -16,6 +28,17 @@ public class ApplicationModel {
     public int getCurPlanet()
     {
         return CurPlanet;
+    }
+
+
+    public void setFiring(bool Bool)
+    {
+        Firing = Bool;
+    }
+
+    public bool getFiring()
+    {
+        return Firing;
     }
 
     public void setCurLevel(string Level)

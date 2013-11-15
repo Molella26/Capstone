@@ -170,6 +170,11 @@ public class Garage : MonoBehaviour {
 
     void KeyPressing()
     {
+
+        if (Key.getKeyUp(KeyCode.Backspace))
+        {
+            Application.LoadLevel(0);
+        }
         if(CurText!=MaxText-1 && Key.getKeyUp(KeyCode.DownArrow)){
             for (int i = 1; i < MaxText; i++)
             {

@@ -1,0 +1,6 @@
+SelectedShip=0
+SelectedCannon=0
+UnlockedCannons=100
+PlayerLevel=1
+PlayerExp=0
+Money=0

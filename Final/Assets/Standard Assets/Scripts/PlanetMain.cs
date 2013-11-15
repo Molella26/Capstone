@@ -30,8 +30,8 @@ public class PlanetMain : MonoBehaviour {
         SS.setPlanetName("Adora", 0);
         SS.setPlanetName("Crustler", 1);
         SS.setPlanetName("Mondell", 2);
-        SS.setPlanetName("BlahhBlahh", 3);
-        SS.setPlanetName("WaaWaa", 4);
+        SS.setPlanetName("Coming Soon", 3);
+        SS.setPlanetName("Coming Soon", 4);
     }
 
     void createPlanets(){
@@ -81,6 +81,10 @@ public class PlanetMain : MonoBehaviour {
     void KeyBoardKeys()
     {
 
+        if (Key.getKeyUp(KeyCode.Backspace))
+        {
+            Application.LoadLevel(0);
+        }
         if (Key.getKeyUp(KeyCode.LeftArrow))
         {
             if (Zoom == true)
